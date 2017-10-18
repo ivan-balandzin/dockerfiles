@@ -6,10 +6,10 @@ set -o pipefail
 # So the initial ~/.m2 is set with expected content.
 # Don't override, as this is just a reference setup
 copy_reference_file() {
-  local root="${1}"
+  local user="${1}"
   local f="${2%/}"
   local logfile="${3}"
-  local rel="${f/${root}/}" # path relative to /usr/share/maven/ref/
+  local rel="${f/home/${user}/}" # path relative to /usr/share/maven/ref/
   echo "$f" >> "$logfile"
   echo " $f -> $rel" >> "$logfile"
   if [[ ! -e ${MAVEN_CONFIG}/${rel} || $f = *.override ]]
